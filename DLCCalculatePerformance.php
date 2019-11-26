@@ -30,6 +30,38 @@ class DLCCalculatePerformance
    *      Any sale/distribution followed by purchase treated as reinvestment
    *      Any bad data, including 0 amounts, will be ignored
    *
+   *   To calculate performance after investment has been purchased, just specify a purchase on the 
+   *     desired beginning date using the value of the investment on that date.
+   *     For instance, if you already owned 100 shares of stock XYZ on 1/1/2000, when it was trading at 
+   *     $10 per share, but wanted to calculate performance beginning on that date, specify cash flow of 
+   *     1000.00 (positive, purchase) on 2000-01-01. 
+   *
+   *  To calculate peformance while investment is still being held, just specify a sale on the desired
+   *    end date using the value of the investment on that date.
+   *    For instance, if you still held stock XYZ on 12/31/2000, which it was trading at $10 per share,
+   *    but wanted to calculate performance as of that date, specify a cash flow of -1000.00 
+   *    (negative, sale) on 2000-12-31.
+   *
+   *  Thus, if you had the following cash flows:
+   *    12/01/1999 $1000 purchase (100 shares at $10)
+   *    01/01/2000    $5 dividend
+   *    01/01/2000    $5 reinvestment (bought .5 shares)
+   *    04/01/2000    $5 dividend
+   *    04/01/2000    $5 reinvestment (bought .5 shares) 
+   *    07/01/2000    $5 dividend
+   *    07/01/2000    $5 reinvestment (bought .5 shares) 
+   *    10/01/2000    $5 dividend
+   *    10/01/2000    $5 reinvestment (bought .5 shares) 
+   *    12/31/2000    (still held 100 shares but now at $11)
+   *  The cash flow array would be:
+   *  $flows = array(array('date'=>'12/1/1999', 'amount'=>1000), 
+   *                 array('date'=>'1/1/2000', 'amount'=>-5), array('date'=>'1/1/2000', 'amount'=>5),   
+   *                 array('date'=>'4/1/2000', 'amount'=>-5), array('date'=>'4/1/2000', 'amount'=>5),   
+   *                 array('date'=>'7/1/2000', 'amount'=>-5), array('date'=>'7/1/2000', 'amount'=>5),   
+   *                 array('date'=>'10/1/2000','amount'=>-5), array('date'=>'10/1/2000', 'amount'=>5),   
+   *                 array('date'=>'12/31/2000', 'amount'=>-1100));  
+   * 
+   * 
    *   To create performance object:
    *     Create array of cash flows:
    *     $flows = array(array('date'=>date, 'amount'=>amount), array('date'=>date,'amount'=>amount) ...);
