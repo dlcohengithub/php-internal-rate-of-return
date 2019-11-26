@@ -1,9 +1,10 @@
 <?php
 /*
  * Dave Cohen
+ *   Version 0.1
  *   November 2019
  *   dave@alleycatsw.com
- *   
+ *
  * Much of this code was actually converted from Clarion, in my Capital Gainz 
  * portfolio management program. So, at least the original was battle tested!
  *
